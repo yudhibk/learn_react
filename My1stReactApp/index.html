@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    
+      function Profile({organization}) {
+        return (<h2>WE ARE {organization ? organization : 'BANTENG'} SOLID SOLID SOLID!!!</h2>);
+      }
+
+      function ListPeople() {
+        const people = ['Yudi', 'Ari', 'Wibowo'];
+        return (
+          <div>
+            <ul>
+              {people.map((people) => (
+                <li key={people}>{people}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      function TestUpBtn() {
+        const [likes, setLikes] = React.useState(1);
+
+        function AddClick(){
+          setLikes(likes + 1)
+        }
+        function ResetClick(){
+          setLikes(0)
+        }
+        function RemoveClick(){
+          setLikes(likes - 1)
+        }
+
+        function MyCounter({counter}) {
+          const uwiw = counter > 10 || counter < 0 ? 'Done!' : `Count Click : ${counter}`;
+          return (
+            <span style={{ margin: 20 }}>{uwiw}</span>
+          )
+        }
+
+        return (
+          <>
+            <button onClick={AddClick} disabled={likes > 10 || likes < 0}>Add Click</button>
+            <button onClick={RemoveClick} disabled={likes > 10 || likes < 0}>Remove Click</button>
+            <button onClick={ResetClick}>Reset</button>
+            <MyCounter counter={likes} />
+          </>
+        );
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(
+        <>
+          <h1 className="heading">Hallo my name is Yudhi 😘</h1>
+          <Profile />
+          <Profile organization="PPP" />
+          <p>Nanih koreh is this?</p>
+          <TestUpBtn />
+          <ListPeople />
+        </>
+      );
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
